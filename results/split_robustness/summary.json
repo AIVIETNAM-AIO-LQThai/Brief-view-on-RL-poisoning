@@ -1,0 +1,17 @@
+{
+  "splits": 10,
+  "targeted_budget": 20,
+  "random_budget": 180,
+  "random_mean_rate": 0.0029271797140655196,
+  "random_median_rate": 0.0,
+  "random_max_rate": 0.01846381093057607,
+  "targeted_mean_rate": 0.2305941514734371,
+  "targeted_median_rate": 0.2347686288321767,
+  "targeted_min_rate": 0.14157851912123678,
+  "targeted_max_rate": 0.3222713864306785,
+  "mean_paired_advantage": 0.22766697175937156,
+  "targeted_wins": 10,
+  "random_wins": 0,
+  "ties": 0,
+  "one_sided_sign_test_p": 0.0009765625
+}
