@@ -30,5 +30,13 @@
     "data_label": "clean",
     "subtitle": "A clean trajectory can still crash or look suspicious.",
     "why_selected": "Useful for showing that risky behavior does not automatically mean poisoning."
+  },
+  {
+    "trajectory_id": "cautious_008",
+    "title": "Clean but flagged suspicious",
+    "style": "cautious",
+    "data_label": "clean",
+    "subtitle": "This trajectory is known to be clean, but the naive statistical detector flags it.",
+    "why_selected": "Demonstrates that unusual legitimate behavior can be mistaken for poisoning."
   }
 ]

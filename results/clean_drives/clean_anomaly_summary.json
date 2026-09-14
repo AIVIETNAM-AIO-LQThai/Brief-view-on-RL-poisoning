@@ -1,0 +1,18 @@
+{
+  "experiment": "clean_anomaly_inspection",
+  "data_label": "clean_only",
+  "n_trajectories": 60,
+  "z_threshold": 2.0,
+  "global_flagged": 10,
+  "style_aware_flagged": 12,
+  "global_flagged_by_style": {
+    "aggressive": 4,
+    "cautious": 6,
+    "normal": 0
+  },
+  "style_aware_flagged_by_style": {
+    "aggressive": 4,
+    "cautious": 4,
+    "normal": 4
+  }
+}

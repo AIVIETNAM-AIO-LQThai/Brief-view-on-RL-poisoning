@@ -5,8 +5,15 @@ import time
 from pathlib import Path
 
 import streamlit as st
+import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
+ANOMALY_PATH = (
+    ROOT
+    / "results"
+    / "clean_drives"
+    / "clean_anomaly_ranking.csv"
+)
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
@@ -39,6 +46,12 @@ def cached_replay(trajectory_id: str):
     record = cached_record(trajectory_id)
     return render_replay(record)
 
+@st.cache_data(show_spinner=False)
+def cached_anomaly_results():
+    if not ANOMALY_PATH.exists():
+        return None
+
+    return pd.read_csv(ANOMALY_PATH)
 
 def metric_value(value, digits=2):
     if value is None:
@@ -69,6 +82,19 @@ frames, live_steps = cached_replay(trajectory_id)
 summary = summary_table(record)
 step_df = step_dataframe(live_steps)
 
+anomaly_results = cached_anomaly_results()
+
+anomaly_row = None
+
+if anomaly_results is not None:
+    match = anomaly_results[
+        anomaly_results["trajectory_id"]
+        == trajectory_id
+    ]
+
+    if not match.empty:
+        anomaly_row = match.iloc[0]
+
 left, right = st.columns([2.1, 1.2], gap="large")
 
 with left:
@@ -94,6 +120,45 @@ with right:
     badge_cols = st.columns(2)
     badge_cols[0].metric("Style", selected_case["style"].capitalize())
     badge_cols[1].metric("Data label", selected_case["data_label"].capitalize())
+
+    if anomaly_row is not None:
+        detector_box = st.container(
+            border=True
+        )
+
+        with detector_box:
+            st.markdown(
+                "**Naive anomaly detector**"
+            )
+
+            d1, d2 = st.columns(2)
+
+            d1.metric(
+                "Anomaly score",
+                f"{float(anomaly_row['global_anomaly_score']):.2f}",
+            )
+
+            d2.metric(
+                "Detector decision",
+                (
+                    "Suspicious"
+                    if bool(anomaly_row["global_flag"])
+                    else "Normal"
+                ),
+            )
+
+            st.caption(
+                "Ground truth: CLEAN. "
+                "A 'Suspicious' decision here is therefore "
+                "a false positive."
+            )
+
+            st.write(
+                "Strongest unusual feature:",
+                anomaly_row[
+                    "global_dominant_feature"
+                ],
+            )
 
     live_box = st.container(border=True)
     summary_box = st.container(border=True)

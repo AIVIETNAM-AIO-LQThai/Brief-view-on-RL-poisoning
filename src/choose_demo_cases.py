@@ -9,6 +9,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results" / "clean_drives"
 SUMMARY_PATH = RESULTS / "summary.csv"
+ANOMALY_PATH = RESULTS / "clean_anomaly_ranking.csv"
 DEMO_DIR = ROOT / "demo"
 DEMO_CASES_PATH = DEMO_DIR / "demo_cases.json"
 
@@ -57,6 +58,13 @@ def main() -> None:
         )
 
     df = pd.read_csv(SUMMARY_PATH)
+    if not ANOMALY_PATH.exists():
+        raise FileNotFoundError(
+            f"Could not find {ANOMALY_PATH}. "
+            "Run python -m src.inspect_clean_anomalies first."
+        )
+
+    anomaly_df = pd.read_csv(ANOMALY_PATH)
     DEMO_DIR.mkdir(parents=True, exist_ok=True)
 
     cases = []
@@ -84,6 +92,50 @@ def main() -> None:
                 "data_label": "clean",
                 "subtitle": "A clean trajectory can still crash or look suspicious.",
                 "why_selected": "Useful for showing that risky behavior does not automatically mean poisoning.",
+            }
+        )
+
+    already_selected = {
+        case["trajectory_id"]
+        for case in cases
+    }
+
+    false_positives = anomaly_df[
+        anomaly_df["global_flag"] == True  # noqa: E712
+    ].copy()
+
+    false_positives = false_positives[
+        ~false_positives["trajectory_id"].isin(
+            already_selected
+        )
+    ]
+
+    if not false_positives.empty:
+        false_positive = (
+            false_positives
+            .sort_values(
+                "global_anomaly_score",
+                ascending=False,
+            )
+            .iloc[0]
+        )
+
+        cases.append(
+            {
+                "trajectory_id": false_positive[
+                    "trajectory_id"
+                ],
+                "title": "Clean but flagged suspicious",
+                "style": false_positive["style"],
+                "data_label": "clean",
+                "subtitle": (
+                    "This trajectory is known to be clean, "
+                    "but the naive statistical detector flags it."
+                ),
+                "why_selected": (
+                    "Demonstrates that unusual legitimate "
+                    "behavior can be mistaken for poisoning."
+                ),
             }
         )
 
