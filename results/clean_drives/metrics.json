@@ -1,84 +1,84 @@
 {
   "experiment": "clean_driving_baseline",
-  "status": "needs_revision",
+  "status": "accepted",
   "n_trajectories": 60,
   "by_style": [
     {
       "style": "cautious",
       "n": 20,
-      "crash_rate": 0.2,
-      "reward_mean": 0.7464051480740234,
-      "return_mean": 104.94987418571286,
-      "return_std": 19.415475808061547,
-      "speed_mean": 22.06286520417065,
-      "speed_std": 0.1181656884191129,
-      "lane_changes_mean": 0.8,
-      "min_front_gap_median": 15.733077179848607,
-      "min_ttc_median": 4.960442010646112,
-      "action_entropy_mean": 1.2523190479874589
+      "crash_rate": 0.0,
+      "reward_mean": 0.6963603834443437,
+      "return_mean": 105.1504179000959,
+      "return_std": 3.8001097280965026,
+      "speed_mean": 20.078127384258558,
+      "speed_std": 0.0,
+      "lane_changes_mean": 0.15,
+      "min_front_gap_median": 37.44020571200299,
+      "min_ttc_median": 29.525001399282537,
+      "action_entropy_mean": 0.06606831899028343
     },
     {
       "style": "normal",
       "n": 20,
-      "crash_rate": 0.8,
-      "reward_mean": 0.8324072909265462,
-      "return_mean": 80.93731020000484,
-      "return_std": 37.21037326617898,
-      "speed_mean": 25.027775551381428,
-      "speed_std": 0.1278444875268932,
-      "lane_changes_mean": 1.7,
-      "min_front_gap_median": 5.000000033083893,
-      "min_ttc_median": 1.010442574160424,
-      "action_entropy_mean": 0.9800341948016568
+      "crash_rate": 0.1,
+      "reward_mean": 0.7862612350510861,
+      "return_mean": 109.49378526154096,
+      "return_std": 27.465902152032605,
+      "speed_mean": 23.165754455039377,
+      "speed_std": 1.1356922254584918,
+      "lane_changes_mean": 1.35,
+      "min_front_gap_median": 14.090765703470652,
+      "min_ttc_median": 4.022654140793213,
+      "action_entropy_mean": 0.6545376857577976
     },
     {
       "style": "aggressive",
       "n": 20,
-      "crash_rate": 1.0,
-      "reward_mean": 0.900147185085711,
-      "return_mean": 51.3770627156649,
-      "return_std": 22.233109718252077,
-      "speed_mean": 28.48614231353101,
-      "speed_std": 1.0559928703417518,
-      "lane_changes_mean": 3.3,
-      "min_front_gap_median": 7.483691145395738,
-      "min_ttc_median": 1.0476398595607592,
-      "action_entropy_mean": 1.3697796183132445
+      "crash_rate": 0.05,
+      "reward_mean": 0.8485498810273431,
+      "return_mean": 127.62587875923218,
+      "return_std": 8.490165029804137,
+      "speed_mean": 25.56496959748116,
+      "speed_std": 1.634923577657416,
+      "lane_changes_mean": 3.7,
+      "min_front_gap_median": 12.985777205309176,
+      "min_ttc_median": 2.050741102774393,
+      "action_entropy_mean": 1.0645582403595761
     }
   ],
   "acceptance": {
-    "pass": false,
+    "pass": true,
     "checks": {
       "cautious_crash_rate": {
-        "pass": false,
-        "actual": 0.2,
+        "pass": true,
+        "actual": 0.0,
         "limit": 0.15
       },
       "normal_crash_rate": {
-        "pass": false,
-        "actual": 0.8,
+        "pass": true,
+        "actual": 0.1,
         "limit": 0.3
       },
       "aggressive_crash_rate": {
-        "pass": false,
-        "actual": 1.0,
+        "pass": true,
+        "actual": 0.05,
         "limit": 0.5
       },
       "speed_separation": {
         "pass": true,
         "means": {
-          "cautious": 22.06286520417065,
-          "normal": 25.027775551381428,
-          "aggressive": 28.48614231353101
+          "cautious": 20.078127384258558,
+          "normal": 23.165754455039377,
+          "aggressive": 25.56496959748116
         },
         "minimum_required_gap": 1.5
       },
       "lane_change_order": {
         "pass": true,
         "means": {
-          "cautious": 0.8,
-          "normal": 1.7,
-          "aggressive": 3.3
+          "cautious": 0.15,
+          "normal": 1.35,
+          "aggressive": 3.7
         }
       }
     }

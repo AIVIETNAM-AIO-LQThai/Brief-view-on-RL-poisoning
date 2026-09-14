@@ -1,16 +1,10 @@
 {
   "collision_types": {
-    "front_collision": 19,
-    "lane_change_or_side": 10,
-    "side_or_unclear": 6,
-    "rear_collision": 5
+    "front_collision": 2,
+    "lane_change_or_side": 1
   },
   "actions_before_crash": {
-    "IDLE": 13,
-    "FASTER": 12,
-    "SLOWER": 11,
-    "LANE_LEFT": 2,
-    "LANE_RIGHT": 2
+    "IDLE": 3
   },
-  "fraction_with_recent_lane_change": 0.3
+  "fraction_with_recent_lane_change": 0.3333333333333333
 }

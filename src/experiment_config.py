@@ -16,7 +16,7 @@ ENV_CONFIG = {
     "lanes_count": 3,
 
     # Reduced from 25 after the initial baseline showed that crash outcome
-# was too strongly associated with driving style.
+    # was too strongly associated with driving style.
     "vehicles_count": 20,
 
     "duration": 30,
@@ -42,24 +42,24 @@ STYLE_CONFIG = {
         "front_gap_trigger": 18.0,
         "base_front_gap": 22.0,
         "base_rear_gap": 16.0,
-        "lane_change_probability": 0.30,
-        "random_action_probability": 0.00,
+        "lane_change_probability_per_second": 0.30,
+        "random_action_probability_per_second": 0.00,
     },
     "normal": {
         "target_speed": 25.5,
         "front_gap_trigger": 22.0,
         "base_front_gap": 19.0,
         "base_rear_gap": 14.0,
-        "lane_change_probability": 0.55,
-        "random_action_probability": 0.01,
+        "lane_change_probability_per_second": 0.55,
+        "random_action_probability_per_second": 0.01,
     },
     "aggressive": {
         "target_speed": 28.5,
         "front_gap_trigger": 25.0,
         "base_front_gap": 16.0,
         "base_rear_gap": 12.0,
-        "lane_change_probability": 0.75,
-        "random_action_probability": 0.02,
+        "lane_change_probability_per_second": 0.75,
+        "random_action_probability_per_second": 0.02,
     },
 }
 

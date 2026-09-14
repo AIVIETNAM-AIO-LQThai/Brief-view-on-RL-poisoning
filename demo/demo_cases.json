@@ -1,6 +1,6 @@
 [
   {
-    "trajectory_id": "cautious_002",
+    "trajectory_id": "cautious_000",
     "title": "Cautious clean drive",
     "style": "cautious",
     "data_label": "clean",
@@ -8,7 +8,7 @@
     "why_selected": "Representative drive near the middle of this style's clean behavior."
   },
   {
-    "trajectory_id": "normal_000",
+    "trajectory_id": "normal_011",
     "title": "Normal clean drive",
     "style": "normal",
     "data_label": "clean",
@@ -16,7 +16,7 @@
     "why_selected": "Representative drive near the middle of this style's clean behavior."
   },
   {
-    "trajectory_id": "aggressive_002",
+    "trajectory_id": "aggressive_013",
     "title": "Aggressive clean drive",
     "style": "aggressive",
     "data_label": "clean",
@@ -24,7 +24,7 @@
     "why_selected": "Representative drive near the middle of this style's clean behavior."
   },
   {
-    "trajectory_id": "aggressive_002",
+    "trajectory_id": "aggressive_001",
     "title": "Risky but still clean",
     "style": "aggressive",
     "data_label": "clean",
