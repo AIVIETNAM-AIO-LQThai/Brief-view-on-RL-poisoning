@@ -1,0 +1,51 @@
+{
+  "experiment": "stealthy_reward_policy_influence",
+  "learner": "aggregated_tabular_fqi",
+  "gamma": 0.99,
+  "training_trajectories": 51,
+  "probe_trajectories": 9,
+  "poisoned_training_trajectories": 6,
+  "modified_training_rewards": 180,
+  "probe_states_total": 1359,
+  "probe_states_covered": 1355,
+  "coverage_rate": 0.9970566593083149,
+  "multi_action_probe_states": 1169,
+  "changed_actions": 0,
+  "action_disagreement_rate": 0.0,
+  "multi_action_disagreement_rate": 0.0,
+  "clean_max_abs_q": 99.24697459789142,
+  "poison_max_abs_q": 99.24697459789142,
+  "clean_iterations": 500,
+  "poison_iterations": 500,
+  "probe_ids": [
+    "aggressive_003",
+    "aggressive_006",
+    "aggressive_013",
+    "cautious_002",
+    "cautious_011",
+    "cautious_015",
+    "normal_006",
+    "normal_009",
+    "normal_012"
+  ],
+  "by_style": [
+    {
+      "style": "aggressive",
+      "count": 453,
+      "changed": 0,
+      "disagreement_rate": 0.0
+    },
+    {
+      "style": "cautious",
+      "count": 453,
+      "changed": 0,
+      "disagreement_rate": 0.0
+    },
+    {
+      "style": "normal",
+      "count": 449,
+      "changed": 0,
+      "disagreement_rate": 0.0
+    }
+  ]
+}
