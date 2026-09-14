@@ -15,7 +15,8 @@ ENV_CONFIG = {
     "action": {"type": "DiscreteMetaAction"},
     "lanes_count": 3,
 
-    # Reduced from 25 after Checkpoint 1A showed crash outcome dominated style.
+    # Reduced from 25 after the initial baseline showed that crash outcome
+# was too strongly associated with driving style.
     "vehicles_count": 20,
 
     "duration": 30,

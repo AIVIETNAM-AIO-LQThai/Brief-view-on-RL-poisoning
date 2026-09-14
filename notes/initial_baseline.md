@@ -1,4 +1,4 @@
-# Checkpoint 1A — First clean baseline (NOT accepted)
+# Initial clean baseline - rejected design
 
 ## What we tested
 60 clean HighwayEnv trajectories:
@@ -39,9 +39,10 @@ Do NOT proceed to poisoning or anomaly detection yet.
 Preserve this run as evidence that experiment design itself can fail.
 
 ## Revision
-Stage 1B will:
+The revised clean baseline will:
 1. keep three clean driving styles;
 2. use safer, velocity-aware lane-change checks;
 3. slightly reduce traffic density;
 4. record front-gap and time-to-collision-style safety features;
-5. apply acceptance criteria before Stage 2 is allowed to begin.
+5. apply acceptance criteria before anomaly inspection begins.
+

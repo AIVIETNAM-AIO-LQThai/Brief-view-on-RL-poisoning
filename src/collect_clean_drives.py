@@ -226,9 +226,9 @@ def main():
             )
 
     df = pd.DataFrame(summaries)
-    df.to_csv(OUT / "clean_summary.csv", index=False)
+    df.to_csv(OUT / "summary.csv", index=False)
 
-    with (OUT / "clean_trajectories.jsonl").open("w", encoding="utf-8") as f:
+    with (OUT / "trajectories.jsonl").open("w", encoding="utf-8") as f:
         for record in records:
             f.write(json.dumps(record, allow_nan=True) + "\n")
 
@@ -252,37 +252,51 @@ def main():
     report = acceptance_report(by_style)
 
     result = {
-        "exp": "clean_driving_baseline",
+        "experiment": "clean_driving_baseline",
         "status": "accepted" if report["pass"] else "needs_revision",
         "n_trajectories": int(len(df)),
         "by_style": by_style.to_dict(orient="records"),
         "acceptance": report,
     }
 
-    with (OUT / "stage01b_metrics.json").open("w", encoding="utf-8") as f:
+    with (OUT / "metrics.json").open("w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, allow_nan=True)
 
-    print("\n=== STAGE 1B BY STYLE ===")
+    print("\n=== CLEAN DRIVING BASELINE ===")
     print(by_style.round(4).to_string(index=False))
 
     print("\n=== ACCEPTANCE ===")
-    print("PASS" if report["pass"] else "NEEDS TUNING")
+    print("ACCEPTED" if report["pass"] else "NEEDS REVISION")
+
     for name, detail in report["checks"].items():
         print(f"{name}: {'PASS' if detail['pass'] else 'FAIL'}")
 
-    checkpoint = f"""# Checkpoint 1B — Tuned clean baseline
+    run_summary = f"""# Clean driving baseline
 
-Status: **{'ACCEPTED' if report['pass'] else 'NEEDS MORE TUNING'}**
+Status: **{'ACCEPTED' if report['pass'] else 'NEEDS REVISION'}**
 
-No poisoning was present.
+No poisoning was introduced in this experiment.
 
-The full measured metrics are saved in:
-`outputs/stage01b_tuned/stage01b_metrics.json`
+The measured results are stored in:
 
-Do not proceed to Stage 2 unless the acceptance result is PASS.
+- `results/clean_drives/summary.csv`
+- `results/clean_drives/metrics.json`
+
+The full trajectory data are stored locally in:
+
+- `results/clean_drives/trajectories.jsonl`
+
+The raw trajectory file is reproducible from the fixed environment and policy
+seeds and is therefore excluded from Git.
+
+Anomaly inspection should begin only after the clean-driving baseline satisfies
+the acceptance criteria.
 """
-    (ROOT / "CHECKPOINT_STAGE01B.md").write_text(checkpoint, encoding="utf-8")
 
-
+    (OUT / "run_summary.md").write_text(
+        run_summary,
+        encoding="utf-8",
+    )
+    
 if __name__ == "__main__":
     main()

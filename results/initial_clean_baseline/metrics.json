@@ -1,5 +1,5 @@
 {
-  "stage": 1,
+  "experiment": "initial_clean_baseline",
   "status": "complete",
   "environment": "highway-v0",
   "base_seed": 20260915,

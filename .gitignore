@@ -1,0 +1,10 @@
+﻿.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Raw generated trajectory data can be reproduced from seeds.
+results/**/trajectories.jsonl
+
+.DS_Store
+Thumbs.db
