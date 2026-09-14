@@ -155,6 +155,7 @@ def collect_episode(style, episode_index, env_seed, policy_seed):
         "min_ttc": float(min(finite_ttcs)) if finite_ttcs else math.inf,
         "min_euclidean_vehicle_distance": float(min(euclidean_mins)),
         "actions": actions,
+        "mean_reward": float(np.mean(rewards)),
     }
 
     record = {
@@ -162,6 +163,8 @@ def collect_episode(style, episode_index, env_seed, policy_seed):
         "style": style,
         "env_seed": env_seed,
         "policy_seed": policy_seed,
+        "environment_id": ENV_ID,
+        "environment_config": ENV_CONFIG,
         "summary": summary,
         "transitions": transitions,
     }
@@ -237,6 +240,7 @@ def main():
         .agg(
             n=("trajectory_id", "count"),
             crash_rate=("crashed", "mean"),
+            reward_mean=("mean_reward", "mean"),
             return_mean=("return", "mean"),
             return_std=("return", "std"),
             speed_mean=("mean_speed", "mean"),
@@ -257,6 +261,7 @@ def main():
         "n_trajectories": int(len(df)),
         "by_style": by_style.to_dict(orient="records"),
         "acceptance": report,
+        "policy_frequency_hz": ENV_CONFIG["policy_frequency"],
     }
 
     with (OUT / "metrics.json").open("w", encoding="utf-8") as f:
@@ -297,6 +302,6 @@ the acceptance criteria.
         run_summary,
         encoding="utf-8",
     )
-    
+
 if __name__ == "__main__":
     main()

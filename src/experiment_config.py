@@ -21,7 +21,7 @@ ENV_CONFIG = {
 
     "duration": 30,
     "simulation_frequency": 15,
-    "policy_frequency": 1,
+    "policy_frequency": 5,
 
     "collision_reward": -1,
     "right_lane_reward": 0.1,

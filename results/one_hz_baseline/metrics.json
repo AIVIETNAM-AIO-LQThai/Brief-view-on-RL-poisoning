@@ -1,0 +1,83 @@
+{
+  "experiment": "clean_driving_baseline",
+  "status": "needs_revision",
+  "n_trajectories": 60,
+  "by_style": [
+    {
+      "style": "cautious",
+      "n": 20,
+      "crash_rate": 0.3,
+      "return_mean": 19.85881314363085,
+      "return_std": 5.2141307695837,
+      "speed_mean": 22.41454010626436,
+      "speed_std": 0.12240934040002391,
+      "lane_changes_mean": 0.4,
+      "min_front_gap_median": 7.811779624811152,
+      "min_ttc_median": 1.9361211060883696,
+      "action_entropy_mean": 1.067439840586026
+    },
+    {
+      "style": "normal",
+      "n": 20,
+      "crash_rate": 0.5,
+      "return_mean": 17.462613743084937,
+      "return_std": 8.234180148835351,
+      "speed_mean": 24.003023905886366,
+      "speed_std": 0.8098264985817231,
+      "lane_changes_mean": 1.0,
+      "min_front_gap_median": 6.47997174200367,
+      "min_ttc_median": 2.0776913181084304,
+      "action_entropy_mean": 1.1364430563700405
+    },
+    {
+      "style": "aggressive",
+      "n": 20,
+      "crash_rate": 0.85,
+      "return_mean": 15.067650115147577,
+      "return_std": 7.95113216822915,
+      "speed_mean": 27.227668648864515,
+      "speed_std": 1.6139246792942494,
+      "lane_changes_mean": 1.95,
+      "min_front_gap_median": 5.000004806595797,
+      "min_ttc_median": 1.3836409888210777,
+      "action_entropy_mean": 1.6818484284566935
+    }
+  ],
+  "acceptance": {
+    "pass": false,
+    "checks": {
+      "cautious_crash_rate": {
+        "pass": false,
+        "actual": 0.3,
+        "limit": 0.15
+      },
+      "normal_crash_rate": {
+        "pass": false,
+        "actual": 0.5,
+        "limit": 0.3
+      },
+      "aggressive_crash_rate": {
+        "pass": false,
+        "actual": 0.85,
+        "limit": 0.5
+      },
+      "speed_separation": {
+        "pass": true,
+        "means": {
+          "cautious": 22.41454010626436,
+          "normal": 24.003023905886366,
+          "aggressive": 27.227668648864515
+        },
+        "minimum_required_gap": 1.5
+      },
+      "lane_change_order": {
+        "pass": true,
+        "means": {
+          "cautious": 0.4,
+          "normal": 1.0,
+          "aggressive": 1.95
+        }
+      }
+    }
+  }
+}

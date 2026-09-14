@@ -1,0 +1,34 @@
+[
+  {
+    "trajectory_id": "cautious_002",
+    "title": "Cautious clean drive",
+    "style": "cautious",
+    "data_label": "clean",
+    "subtitle": "Lower target speed, very few lane changes, larger safety margins.",
+    "why_selected": "Representative drive near the middle of this style's clean behavior."
+  },
+  {
+    "trajectory_id": "normal_000",
+    "title": "Normal clean drive",
+    "style": "normal",
+    "data_label": "clean",
+    "subtitle": "Balanced speed and overtaking behavior with moderate safety margins.",
+    "why_selected": "Representative drive near the middle of this style's clean behavior."
+  },
+  {
+    "trajectory_id": "aggressive_002",
+    "title": "Aggressive clean drive",
+    "style": "aggressive",
+    "data_label": "clean",
+    "subtitle": "Higher target speed, more overtaking, and smaller safety margins.",
+    "why_selected": "Representative drive near the middle of this style's clean behavior."
+  },
+  {
+    "trajectory_id": "aggressive_002",
+    "title": "Risky but still clean",
+    "style": "aggressive",
+    "data_label": "clean",
+    "subtitle": "A clean trajectory can still crash or look suspicious.",
+    "why_selected": "Useful for showing that risky behavior does not automatically mean poisoning."
+  }
+]
