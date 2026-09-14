@@ -1,22 +1,25 @@
 {
-  "experiment": "stealthy_reward_policy_influence",
+  "experiment": "decision_targeted_policy_influence",
   "learner": "aggregated_tabular_fqi",
   "gamma": 0.99,
   "training_trajectories": 51,
   "probe_trajectories": 9,
-  "poisoned_training_trajectories": 6,
+  "poisoned_training_trajectories": 32,
   "modified_training_rewards": 180,
+  "maximum_reward_change": 0.2500000000000001,
+  "total_reward_budget": 45.00000000000002,
   "probe_states_total": 1359,
   "probe_states_covered": 1355,
   "coverage_rate": 0.9970566593083149,
   "multi_action_probe_states": 1169,
-  "changed_actions": 0,
-  "action_disagreement_rate": 0.0,
-  "multi_action_disagreement_rate": 0.0,
+  "changed_actions": 372,
+  "action_disagreement_rate": 0.2745387453874539,
+  "multi_action_disagreement_rate": 0.31822070145423437,
   "clean_max_abs_q": 99.90328957642123,
-  "poison_max_abs_q": 99.90328957642123,
-  "clean_iterations": 1376,
-  "poison_iterations": 1376,
+  "targeted_max_abs_q": 121.06405313011447,
+  "approximate_reward_based_q_bound": 122.19648858411227,
+  "random_stealthy_disagreement_rate": 0.0,
+  "random_stealthy_changed_actions": 0,
   "probe_ids": [
     "aggressive_003",
     "aggressive_006",
@@ -32,20 +35,20 @@
     {
       "style": "aggressive",
       "count": 453,
-      "changed": 0,
-      "disagreement_rate": 0.0
+      "changed": 259,
+      "disagreement_rate": 0.5717439293598234
     },
     {
       "style": "cautious",
       "count": 453,
-      "changed": 0,
-      "disagreement_rate": 0.0
+      "changed": 2,
+      "disagreement_rate": 0.004415011037527594
     },
     {
       "style": "normal",
       "count": 449,
-      "changed": 0,
-      "disagreement_rate": 0.0
+      "changed": 111,
+      "disagreement_rate": 0.24721603563474387
     }
   ]
 }
