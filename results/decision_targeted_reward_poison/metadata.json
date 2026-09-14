@@ -1,0 +1,22 @@
+{
+  "experiment": "decision_targeted_reward_poison",
+  "source": "accepted_clean_driving_baseline",
+  "selection_rule": "boost runner-up actions in low-margin abstract states",
+  "reward_delta": 0.25,
+  "transition_budget": 180,
+  "actual_modified_transitions": 180,
+  "total_reward_budget": 45.0,
+  "n_poisoned_trajectories": 32,
+  "n_targeted_abstract_states": 40,
+  "probe_ids_excluded": [
+    "aggressive_003",
+    "aggressive_006",
+    "aggressive_013",
+    "cautious_002",
+    "cautious_011",
+    "cautious_015",
+    "normal_006",
+    "normal_009",
+    "normal_012"
+  ]
+}

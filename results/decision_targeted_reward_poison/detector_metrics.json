@@ -1,0 +1,26 @@
+{
+  "experiment": "decision_targeted_reward_poison_detection",
+  "z_threshold": 2.0,
+  "n_total": 60,
+  "n_poisoned": 32,
+  "global_detector": {
+    "tp": 3,
+    "fp": 7,
+    "tn": 21,
+    "fn": 29,
+    "precision": 0.3,
+    "recall": 0.09375,
+    "false_positive_rate": 0.25,
+    "accuracy": 0.4
+  },
+  "style_aware_detector": {
+    "tp": 9,
+    "fp": 2,
+    "tn": 26,
+    "fn": 23,
+    "precision": 0.8181818181818182,
+    "recall": 0.28125,
+    "false_positive_rate": 0.07142857142857142,
+    "accuracy": 0.5833333333333334
+  }
+}
