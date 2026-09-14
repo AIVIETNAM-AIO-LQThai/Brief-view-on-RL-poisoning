@@ -10,7 +10,7 @@ import highway_env  # noqa: F401
 import numpy as np
 import pandas as pd
 
-from .config_stage01b import (
+from .experiment_config import (
     ACCEPTANCE,
     BASE_SEED,
     ENV_CONFIG,
@@ -18,10 +18,10 @@ from .config_stage01b import (
     EPISODES_PER_STYLE,
     STYLE_ORDER,
 )
-from .policies_stage01b import choose_action
+from .driving_policy import choose_action
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "outputs" / "stage01b_tuned"
+OUT = ROOT / "results" / "clean_drives"
 OUT.mkdir(parents=True, exist_ok=True)
 
 
@@ -252,8 +252,8 @@ def main():
     report = acceptance_report(by_style)
 
     result = {
-        "stage": "1B",
-        "status": "accepted" if report["pass"] else "needs_tuning",
+        "exp": "clean_driving_baseline",
+        "status": "accepted" if report["pass"] else "needs_revision",
         "n_trajectories": int(len(df)),
         "by_style": by_style.to_dict(orient="records"),
         "acceptance": report,

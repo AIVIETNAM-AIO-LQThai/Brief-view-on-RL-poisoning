@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import numpy as np
 
-from .config_stage01b import STYLE_CONFIG
+from .experiment_config import STYLE_CONFIG
 
 
 @dataclass
