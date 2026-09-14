@@ -1,0 +1,59 @@
+{
+  "experiment": "stealthy_reward_policy_influence",
+  "learner": "linear_fitted_q_iteration",
+  "gamma": 0.99,
+  "ridge": 0.01,
+  "iterations": 40,
+  "training_trajectories": 51,
+  "probe_trajectories": 9,
+  "poisoned_training_trajectories": 6,
+  "modified_training_rewards": 180,
+  "probe_states": 1359,
+  "changed_actions": 40,
+  "action_disagreement_rate": 0.029433406916850625,
+  "mean_abs_q_shift": 1898334200.5545654,
+  "max_abs_q_shift": 12270939603.519812,
+  "low_margin_threshold": 811165167.3507736,
+  "low_margin_disagreement_rate": 0.11764705882352941,
+  "risky_probe_states": 111,
+  "risky_state_disagreement_rate": 0.04504504504504504,
+  "probe_ids": [
+    "aggressive_003",
+    "aggressive_006",
+    "aggressive_013",
+    "cautious_002",
+    "cautious_011",
+    "cautious_015",
+    "normal_006",
+    "normal_009",
+    "normal_012"
+  ],
+  "poisoned_ids": [
+    "aggressive_009",
+    "aggressive_012",
+    "cautious_010",
+    "cautious_014",
+    "normal_003",
+    "normal_011"
+  ],
+  "by_style": [
+    {
+      "style": "aggressive",
+      "count": 453,
+      "changed": 7,
+      "disagreement_rate": 0.01545253863134658
+    },
+    {
+      "style": "cautious",
+      "count": 453,
+      "changed": 1,
+      "disagreement_rate": 0.002207505518763797
+    },
+    {
+      "style": "normal",
+      "count": 453,
+      "changed": 32,
+      "disagreement_rate": 0.0706401766004415
+    }
+  ]
+}
