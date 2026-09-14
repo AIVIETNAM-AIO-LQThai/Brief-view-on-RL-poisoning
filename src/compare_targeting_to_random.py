@@ -50,7 +50,7 @@ BUDGETS = [
     20,
 ]
 
-RANDOM_TRIALS = 10
+RANDOM_TRIALS = 50
 
 BASE_RANDOM_SEED = 20260917
 
@@ -516,6 +516,71 @@ def main():
 
                 "random_trials":
                     RANDOM_TRIALS,
+                "random_std_rate":
+                    float(
+                        random_part[
+                            "disagreement_rate"
+                        ].std(
+                            ddof=1
+                        )
+                    ),
+
+                "random_median_rate":
+                    float(
+                        random_part[
+                            "disagreement_rate"
+                        ].median()
+                    ),
+
+                "random_p95_rate":
+                    float(
+                        random_part[
+                            "disagreement_rate"
+                        ].quantile(
+                            0.95
+                        )
+                    ),
+
+                "targeted_minus_random_mean":
+                    float(
+                        targeted[
+                            "disagreement_rate"
+                        ]
+                        - random_part[
+                            "disagreement_rate"
+                        ].mean()
+                    ),
+
+                "random_trials_at_least_targeted":
+                    int(
+                        (
+                            random_part[
+                                "disagreement_rate"
+                            ]
+                            >= targeted[
+                                "disagreement_rate"
+                            ]
+                        ).sum()
+                    ),
+
+                "empirical_p_value":
+                    float(
+                        (
+                            1
+                            + (
+                                random_part[
+                                    "disagreement_rate"
+                                ]
+                                >= targeted[
+                                    "disagreement_rate"
+                                ]
+                            ).sum()
+                        )
+                        / (
+                            RANDOM_TRIALS
+                            + 1
+                        )
+                    ),
             }
         )
 
@@ -552,6 +617,24 @@ def main():
             index=False
         )
     )
+
+    print("\n=== EMPIRICAL RANDOMIZATION TEST ===")
+
+    for _, row in summary.iterrows():
+        print(
+            f"budget={int(row['budget']):>3}"
+            f" | targeted="
+            f"{row['targeted_rate']:.4f}"
+            f" | random mean="
+            f"{row['random_mean_rate']:.4f}"
+            f" | random p95="
+            f"{row['random_p95_rate']:.4f}"
+            f" | random >= targeted="
+            f"{int(row['random_trials_at_least_targeted'])}"
+            f"/{int(row['random_trials'])}"
+            f" | empirical p="
+            f"{row['empirical_p_value']:.4f}"
+        )
 
     print(
         "\n=== RANDOM TRIAL DETAILS ==="
