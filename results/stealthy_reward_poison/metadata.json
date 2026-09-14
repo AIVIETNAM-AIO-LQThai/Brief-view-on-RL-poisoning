@@ -1,0 +1,16 @@
+{
+  "experiment": "stealthy_reward_poison",
+  "source": "accepted_clean_driving_baseline",
+  "selection_source": "obvious_reward_poison_manifest",
+  "reward_delta": 0.25,
+  "n_total_trajectories": 60,
+  "n_poisoned_trajectories": 6,
+  "target_trajectory_ids": [
+    "aggressive_009",
+    "aggressive_012",
+    "cautious_010",
+    "cautious_014",
+    "normal_003",
+    "normal_011"
+  ]
+}

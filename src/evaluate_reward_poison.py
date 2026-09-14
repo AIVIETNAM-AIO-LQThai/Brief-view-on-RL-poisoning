@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -16,13 +17,7 @@ CLEAN_PATH = (
     / "summary.csv"
 )
 
-TEST_DIR = (
-    ROOT
-    / "results"
-    / "obvious_reward_poison"
-)
-
-TEST_PATH = TEST_DIR / "summary.csv"
+DEFAULT_DATASET = "obvious_reward_poison"
 
 Z_THRESHOLD = 2.0
 
@@ -35,6 +30,24 @@ FEATURES = [
     "mean_reward",
 ]
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description=(
+            "Evaluate anomaly detection on a "
+            "clean/poisoned trajectory dataset."
+        )
+    )
+
+    parser.add_argument(
+        "--dataset",
+        default=DEFAULT_DATASET,
+        help=(
+            "Folder name under results/. "
+            "Example: stealthy_reward_poison"
+        ),
+    )
+
+    return parser.parse_args()
 
 def prepare_features(
     df: pd.DataFrame,
@@ -320,14 +333,19 @@ def print_metrics(
 
 
 def main():
+    args = parse_args()
+
+    test_dir = ROOT / "results" / args.dataset
+    test_path = test_dir / "summary.csv"
+
     if not CLEAN_PATH.exists():
         raise FileNotFoundError(
             CLEAN_PATH
         )
 
-    if not TEST_PATH.exists():
+    if not test_path.exists():
         raise FileNotFoundError(
-            TEST_PATH
+            test_path
         )
 
     clean_df = pd.read_csv(
@@ -335,7 +353,7 @@ def main():
     )
 
     test_df = pd.read_csv(
-        TEST_PATH
+        test_path
     )
 
     truth = (
@@ -405,8 +423,7 @@ def main():
     )
 
     ranking.to_csv(
-        TEST_DIR
-        / "detector_results.csv",
+        test_dir / "detector_results.csv",
         index=False,
     )
 
@@ -469,26 +486,18 @@ def main():
     )
 
     result = {
-        "experiment":
-            "obvious_reward_poison_detection",
-        "z_threshold":
-            Z_THRESHOLD,
-        "n_total":
-            int(len(test_df)),
-        "n_poisoned":
-            int(truth.sum()),
-        "global_detector":
-            global_metrics,
-        "style_aware_detector":
-            style_metrics,
+        "experiment": f"{args.dataset}_detection",
+        "z_threshold": Z_THRESHOLD,
+        "n_total": int(len(test_df)),
+        "n_poisoned": int(truth.sum()),
+        "global_detector": global_metrics,
+        "style_aware_detector": style_metrics,
     }
 
     with (
-        TEST_DIR
-        / "detector_metrics.json"
+        test_dir / "detector_metrics.json"
     ).open(
-        "w",
-        encoding="utf-8",
+        "w", encoding="utf-8",
     ) as f:
         json.dump(
             result,
