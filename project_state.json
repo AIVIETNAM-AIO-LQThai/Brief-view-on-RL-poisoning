@@ -1,0 +1,15 @@
+{
+  "project": "Scientific Thinking \u2014 Highway Trajectory Poisoning",
+  "current_stage": 1,
+  "stage_name": "clean_heterogeneous_baseline",
+  "status": "complete",
+  "next_stage": 2,
+  "next_stage_name": "naive_clean_anomaly_inspection",
+  "environment": "highway-v0",
+  "base_seed": 20260915,
+  "representative_trajectory_ids": [
+    "cautious_003",
+    "normal_016",
+    "aggressive_014"
+  ]
+}

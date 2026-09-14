@@ -1,0 +1,53 @@
+{
+  "stage": 1,
+  "status": "complete",
+  "environment": "highway-v0",
+  "base_seed": 20260915,
+  "episodes_per_style": 20,
+  "n_trajectories": 60,
+  "overall": {
+    "crash_rate": 0.5166666666666667,
+    "return_mean": 18.266403921711703,
+    "return_std": 7.243637824696606,
+    "speed_mean": 24.833480534974424,
+    "lane_changes_mean": 1.7833333333333334
+  },
+  "by_style": [
+    {
+      "style": "cautious",
+      "n": 20,
+      "crash_rate": 0.2,
+      "return_mean": 20.958009434141673,
+      "return_std": 3.9343972012205546,
+      "speed_mean": 22.041462018464383,
+      "speed_std": 0.45525115091153756,
+      "lane_changes_mean": 0.5,
+      "min_distance_median": 4.042563800879972,
+      "action_entropy_mean": 1.0683186476327806
+    },
+    {
+      "style": "normal",
+      "n": 20,
+      "crash_rate": 0.5,
+      "return_mean": 17.931684895559588,
+      "return_std": 7.848023490495242,
+      "speed_mean": 24.197327316868247,
+      "speed_std": 0.7496832417287592,
+      "lane_changes_mean": 1.8,
+      "min_distance_median": 4.011662022018941,
+      "action_entropy_mean": 1.2187026823642442
+    },
+    {
+      "style": "aggressive",
+      "n": 20,
+      "crash_rate": 0.85,
+      "return_mean": 15.90951743543385,
+      "return_std": 8.501285045093024,
+      "speed_mean": 28.261652269590638,
+      "speed_std": 1.3871143539986952,
+      "lane_changes_mean": 3.05,
+      "min_distance_median": 4.001889382165034,
+      "action_entropy_mean": 1.6374850942524208
+    }
+  ]
+}
